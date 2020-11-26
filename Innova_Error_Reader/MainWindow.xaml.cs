@@ -27,9 +27,13 @@ namespace Innova_Error_Reader
         //this will be the filtered List
         List<ErrorCode> filteredList;
 
+        //This will be used to determine which txt box to fill when the selected error is chosen.
+        int selectedErrorChosen = 0;
+
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         private void btnSelectFileToRead_Click(object sender, RoutedEventArgs e)
@@ -110,6 +114,7 @@ namespace Innova_Error_Reader
             filteredList = errorList;
             errorCodeListView.ItemsSource = filteredList;
             UpdateErrorCount();
+            selectedErrorChosen = 0;
             
         }
 
@@ -125,6 +130,42 @@ namespace Innova_Error_Reader
             filteredList = errorList;
 
             UpdateErrorCount();
+
+        }
+
+        private void errorCodeListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //Have the list view where you can only select one item at a time in the xaml. Once a item is highlighted this will fire.
+
+            //e has my info, but is of type object
+
+            //BAM, this seems to work. The [0] is because it is the first item selected
+            var selectedError = e.AddedItems[0] as ErrorCode;
+
+            var errorCodeStrg = selectedError.errorCode;
+
+            switch (selectedErrorChosen)
+            {
+                case 0:
+                    txtFilter1.Text = errorCodeStrg;
+                    break;
+                case 1:
+                    txtFilter2.Text = errorCodeStrg;
+                    break;
+                case 2:
+                    txtFilter3.Text = errorCodeStrg;
+                    break;
+                case 3:
+                    txtFilter4.Text = errorCodeStrg;
+                    break;
+
+                //default:
+            }
+
+            //Incrementing so that next time will advance to the next text box.
+            selectedErrorChosen = selectedErrorChosen + 1;
+
+
 
         }
     }

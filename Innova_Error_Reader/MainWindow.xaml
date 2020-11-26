@@ -22,11 +22,13 @@
         </Grid.RowDefinitions>
 
         <ListView x:Name="errorCodeListView"
+                  SelectionChanged="errorCodeListView_SelectionChanged"
                   Grid.Row="2"
                   Grid.ColumnSpan="5"
                   Background="Black"
                   Foreground="Green"
                   FontSize="18"
+                  SelectionMode="Single"
                   Margin="10">
             <ListView.View>
                 <GridView>

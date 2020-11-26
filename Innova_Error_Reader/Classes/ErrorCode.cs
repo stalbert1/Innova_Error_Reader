@@ -104,6 +104,9 @@ namespace Innova_Error_Reader.Classes
         //This is a test method that will be used to count all columns in all rows and dispense a print statement
         //example...
         //4578 rows had 16 columns, 1678 rows had 17 columns, 345 rows had 19 columns.
+        //For now it only outputs the number of the distinct columns.
+        //Max columns 15 16 18 20 17 
+        
         public static string columnsInRows(List<ErrorCode> errorList)
         {
             List<int> numbers = new List<int>();
@@ -113,6 +116,7 @@ namespace Innova_Error_Reader.Classes
                 numbers.Add(error.columns);
             }
 
+            //This will turn the massive List into a list of the distinct int values.
             var uniqueList = numbers.Distinct();
 
             //Need to start with a base string and will concatenate through the next for loop.
